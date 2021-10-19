@@ -1,0 +1,58 @@
+script_opt:
+
+  Test_mode: True
+  Log_trades: True
+  Log_file: 'trades.txt'
+
+  American_usr: False
+
+trading_opt:
+  Pair_with: USDT # select your base currency to use for trading (trade for example USDT pairs)
+  
+  Qty: 15
+
+  Max_coins: 7  # Maximum number of trade 'slots' at any time (your USDT balance must be at least MAX_COINS * QUANTITY)
+  
+  FIATS:  # List of trading pairs to exclude by default we're excluding the most popular fiat pairs
+    - EURUSDT
+    - GBPUSDT
+    - JPYUSDT
+    - USDUSDT
+    - DOWN
+    - UP
+  
+  Detla_T: 2  # the amount of time in MINUTES to calculate the difference from the current price (minimum: 1).
+
+  Recheck_interval: 10    # Number of times to check for TP/SL during each TIME_DIFFERENCE (minimum: 1).
+                           # Don't spam the Binance API, you will be banned (max 1200 requests per minute per IP).
+
+  Change_in_price: 10     # the difference in % between the first and second checks for the price.
+
+  Stop_loss: 5  # define in % when to sell a coin that's not making a profit.
+
+  Take_profit: .8   # define in % when to take profit on a profitable coin.
+
+  Custom_list: True   # Use custom tickers.txt list for filtering pairs.
+
+  Tickers_list: C:\Users\valen\Desktop\stuff\mybot\tickers.txt   # Name of custom tickers list
+
+  Use_trailing_stop_loss: True # whether to use trailing stop loss or not; default is True
+
+  
+  # when hit TAKE_PROFIT, move STOP_LOSS to TRAILING_STOP_LOSS percentage points below TAKE_PROFIT hence locking in profit
+  # when hit TAKE_PROFIT, move TAKE_PROFIT up by TRAILING_TAKE_PROFIT percentage points
+  
+  Trailing_stop_loss: .4
+
+  Trailing_take_profit: .1
+
+
+  # Trading fee in % per trade.
+  # If using 0.75% (using BNB for fees) you must have BNB in your account to cover trading fees.
+  # If using BNB for fees, it MUST be enabled in your Binance 'Dashboard' page (checkbox).
+  
+  Trading_fee: .075
+
+  Signaling_modules:
+    -pausebotmod
+    -signalsamplemod
